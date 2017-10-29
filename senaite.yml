@@ -1,11 +1,15 @@
 ---
 
+# SENAITE Base settings
+
+
 # SENAITE Plone settings
 plone_version: '4.3.14'
 plone_initial_password: admin
 plone_instance_name: senaitelims
 plone_create_site: yes
 plone_extra_find_links:
+plone_buildout_cache_url: http://dist.plone.org/release/{{ plone_version }}/buildout-cache.tar.bz2
 
 plone_group: senaite
 plone_buildout_user: senaite
@@ -13,7 +17,7 @@ plone_daemon_user: senaite_daemon
 
 plone_target_path: "/home/{{ plone_buildout_user }}"
 plone_var_path: "/home/{{ plone_buildout_user }}/data"
-plone_backup_path: "{{ plone_var_path }}"
+plone_backup_path: no
 
 plone_additional_eggs: []
 plone_zcml_slugs: []
@@ -66,6 +70,7 @@ senaite_plone_config:
     plone_instance_name: "{{ plone_instance_name }}"
     plone_create_site: "{{ plone_create_site }}"
     plone_extra_find_links: "{{ plone_extra_find_links }}"
+    plone_buildout_cache_url: "{{ plone_buildout_cache_url }}"
     plone_group: "{{ plone_group }}"
     plone_buildout_user: "{{ plone_buildout_user }}"
     plone_daemon_user: "{{ plone_daemon_user }}"
