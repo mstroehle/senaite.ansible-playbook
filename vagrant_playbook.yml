@@ -1,0 +1,23 @@
+---
+
+# Run with ansible-playbook -i vagrant_hosts.cfg vagrant_playbook.yml
+- hosts: vagrant
+  become: yes
+  gather_facts: yes
+  pre_tasks:
+    # REQUIRED SENAITE VARIABLES (please overwrite in local configure.yml below)
+    - name: Include SENAITE Variables `senaite.yml`
+      include_vars: senaite.yml
+      tags:
+        - always
+
+    # LOCAL CONFIGURE
+    - name: Include Vagrant Variables `vagrant_configure.yml`
+      include_vars: vagrant_configure.yml
+      tags:
+        - always
+
+  roles:
+    # SENAITE PLONE
+    - role: plone.plone_server
+      plone_config: "{{ senaite_plone_config[0] }}"
