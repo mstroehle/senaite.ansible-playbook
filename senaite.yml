@@ -25,6 +25,21 @@ haproxy_backend_httpchk: 'HEAD / HTTP/1.1\r\nHost:localhost'
 ### SENAITE HAPROXY ###
 
 
+### SENAITE VARNISH ###
+varnish_version: "4.0"
+varnish_use_default_vcl: true
+varnish_default_vcl_template_path: templates/default.vcl.j2
+varnish_default_backend_host: "127.0.0.1"
+varnish_default_backend_port: "8080"
+varnish_listen_port: "8888"
+varnish_secret: "11bac9e6-1e39-4119-8078-974375b96c95"
+varnish_config_path: /etc/varnish
+varnish_admin_listen_host: "127.0.0.1"
+varnish_admin_listen_port: "6082"
+varnish_storage: "file,/var/lib/varnish/varnish_storage.bin,1024M"
+###
+
+
 ### SENAITE PLONE ###
 plone_version: '4.3.14'
 plone_initial_password: admin

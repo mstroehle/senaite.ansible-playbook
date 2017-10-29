@@ -1,0 +1,7 @@
+---
+
+- debug:
+    msg: "******************** SENAITE VARNISH ********************"
+
+- include_role:
+    name: geerlingguy.varnish

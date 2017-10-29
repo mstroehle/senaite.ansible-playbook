@@ -10,3 +10,5 @@
   name: plone.plone_server
 
 - name: geerlingguy.haproxy
+
+- name: geerlingguy.varnish

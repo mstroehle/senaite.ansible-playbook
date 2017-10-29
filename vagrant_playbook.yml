@@ -10,6 +10,7 @@
   tasks:
 #    - include: senaite_tasks.yml
     - include: senaite_haproxy.yml
+    - include: senaite_varnish.yml
   roles:
 #    # SENAITE PLONE
 #    - role: plone.plone_server
