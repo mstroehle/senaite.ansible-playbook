@@ -8,3 +8,5 @@
 - src: https://github.com/plone/ansible.plone_server
   version: master
   name: plone.plone_server
+
+- name: geerlingguy.haproxy

@@ -8,8 +8,9 @@
   pre_tasks:
     - include: senaite_pre_tasks.yml
   tasks:
-    - include: senaite_tasks.yml
+#    - include: senaite_tasks.yml
+    - include: senaite_haproxy.yml
   roles:
-    # SENAITE PLONE
-    - role: plone.plone_server
-      plone_config: "{{ senaite_plone_config[0] }}"
+#    # SENAITE PLONE
+#    - role: plone.plone_server
+#      plone_config: "{{ senaite_plone_config[0] }}"

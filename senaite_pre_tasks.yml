@@ -1,18 +1,19 @@
 ---
 
+- debug:
+    msg: "******************** SENAITE PRE-TASKS ********************"
+
 # REQUIRED SENAITE VARIABLES
 - name: Include SENAITE Variables `senaite.yml`
   include_vars: senaite.yml
   tags:
     - always
 
-
 - name: Fail if Ansible version is too old
   fail: msg="Ansible version too old, please update your kit. 'pip install -U Ansible'"
   when: ansible_version.major < 2
   tags:
     - always
-
 
 - name: Setting variables for -> {{ ansible_distribution }}
   include_vars: "{{ item }}"
@@ -21,19 +22,18 @@
   tags:
     - senaite-base
 
-
 - name: Update APT package cache
   action: apt update_cache=yes
+  when: apt_do_upgrade_now == 1
   tags:
     - senaite-base
-
 
 - name: Upgrade APT to the lastest packages
   action: apt upgrade=full
 #  notify: reboot
+  when: apt_do_upgrade_now == 1
   tags:
     - senaite-base
-
 
 - name: Install packages for -> {{ ansible_distribution }}
   apt:
@@ -43,14 +43,12 @@
   tags:
     - senaite-base
 
-
 - name: Install unattended-upgrades
   apt: state=installed pkg=unattended-upgrades
 #  notify: reboot
   when: apt_unattended_upgrade == 1
   tags:
     - senaite-base
-
 
 - name: Adjust APT update intervals
   template:
