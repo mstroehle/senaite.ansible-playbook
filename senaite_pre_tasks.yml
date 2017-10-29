@@ -1,0 +1,63 @@
+---
+
+# REQUIRED SENAITE VARIABLES
+- name: Include SENAITE Variables `senaite.yml`
+  include_vars: senaite.yml
+  tags:
+    - always
+
+
+- name: Fail if Ansible version is too old
+  fail: msg="Ansible version too old, please update your kit. 'pip install -U Ansible'"
+  when: ansible_version.major < 2
+  tags:
+    - always
+
+
+- name: Setting variables for -> {{ ansible_distribution }}
+  include_vars: "{{ item }}"
+  with_first_found:
+    - "vars/{{ ansible_distribution }}.yml"
+  tags:
+    - senaite-base
+
+
+- name: Update APT package cache
+  action: apt update_cache=yes
+  tags:
+    - senaite-base
+
+
+- name: Upgrade APT to the lastest packages
+  action: apt upgrade=full
+#  notify: reboot
+  tags:
+    - senaite-base
+
+
+- name: Install packages for -> {{ ansible_distribution }}
+  apt:
+    pkg: "{{ item }}"
+    state: present
+  with_items: "{{ apt_packages }}"
+  tags:
+    - senaite-base
+
+
+- name: Install unattended-upgrades
+  apt: state=installed pkg=unattended-upgrades
+#  notify: reboot
+  when: apt_unattended_upgrade == 1
+  tags:
+    - senaite-base
+
+
+- name: Adjust APT update intervals
+  template:
+    src: 10periodic.j2
+    dest: /etc/apt/apt.conf.d/10periodic
+    owner: root
+    group: root
+    mode: 0644
+  tags:
+    - senaite-base

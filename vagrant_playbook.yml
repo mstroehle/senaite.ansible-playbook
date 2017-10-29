@@ -6,18 +6,9 @@
   become_method: sudo
   gather_facts: yes
   pre_tasks:
-    # REQUIRED SENAITE VARIABLES (please overwrite in local configure.yml below)
-    - name: Include SENAITE Variables `senaite.yml`
-      include_vars: senaite.yml
-      tags:
-        - always
-
-    # LOCAL CONFIGURE
-    - name: Include Vagrant Variables `vagrant_configure.yml`
-      include_vars: vagrant_configure.yml
-      tags:
-        - always
-
+    - include: senaite_pre_tasks.yml
+  tasks:
+    - include: senaite_tasks.yml
   roles:
     # SENAITE PLONE
     - role: plone.plone_server
