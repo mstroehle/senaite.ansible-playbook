@@ -12,9 +12,13 @@
       include_vars: vagrant_configure.yml
       tags:
         - always
+
   tasks:
     - include: senaite_base.yml
     - include: senaite_plone.yml
     - include: senaite_haproxy.yml
     - include: senaite_varnish.yml
     - include: senaite_nginx.yml
+
+  handlers:
+    - include: senaite_handlers.yml
