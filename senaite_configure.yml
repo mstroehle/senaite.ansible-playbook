@@ -23,7 +23,7 @@ apt_unattended_upgrade: 1
 ### SENAITE HAPROXY ###
 haproxy_frontend_bind_address: "127.0.0.1"
 haproxy_frontend_port: "8080"
-haproxy_with_http_stats: no
+haproxy_with_http_stats: yes
 haproxy_stats_user: admin
 haproxy_stats_pass: admin
 haproxy_frontend_id: senaite_frontend
