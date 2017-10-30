@@ -101,7 +101,7 @@ nginx_upstreams: []
 ### SENAITE MUNIN ###
 munin_admin_user: admin
 munin_admin_password: admin
-munin_hostname: "senaite"
+munin_hostname: "SENAITE"
 munin_dbdir: /var/lib/munin
 munin_htmldir: /var/www/html/munin
 munin_logdir: /var/log/munin
