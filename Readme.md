@@ -5,7 +5,7 @@
   </a>
   <h1>SENAITE Ansible Playbook</h1>
 
-  <p>This package provides a complete Ansible Playbook for SENAITE</p>
+  <p>This Ansible playbook provisions a complete industry-proven SENAITE server</p>
 </div>
 
 
