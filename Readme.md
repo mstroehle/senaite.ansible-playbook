@@ -17,23 +17,23 @@ This paybook provisions a [SENAITE][1] installation running on a suitable
 The Playbook is splitted into different tasks which need to be run in a specific order:
 
 - `senaite_base.yml`
-  Installs system packages.
+  - Installs system packages.
 
 - `senaite_plone.yml`
-  Dependency Role: [plone.plone_server](https://github.com/plone/ansible.plone_server)
-  Installs: Plone, Supervisor
+  - Dependency Role: [plone.plone_server](https://github.com/plone/ansible.plone_server)
+  - Installs: Plone, Supervisor
 
 - `senaite_haproxy`
-  Dependency Role: [geerlingguy.haproxy](https://galaxy.ansible.com/geerlingguy/haproxy)
-  Installs HAProxy and copies over custom templates from the `templates` folder.
+  - Dependency Role: [geerlingguy.haproxy](https://galaxy.ansible.com/geerlingguy/haproxy)
+  - Installs HAProxy and copies over custom templates from the `templates` folder.
 
 - `senaite_varnish`
-  Dependency Role: [geerlingguy.varnish](https://galaxy.ansible.com/geerlingguy/varnish)
-  Installs Varnish and copies over custom templates from the `templates` folder.
+  - Dependency Role: [geerlingguy.varnish](https://galaxy.ansible.com/geerlingguy/varnish)
+  - Installs Varnish and copies over custom templates from the `templates` folder.
 
 - `senaite_nginx`
-  Dependency Role: [geerlingguy.nginx](https://galaxy.ansible.com/geerlingguy/nginx)
-  Installs NGINX and copies over custom templates from the `templates` folder.
+  - Dependency Role: [geerlingguy.nginx](https://galaxy.ansible.com/geerlingguy/nginx)
+  - Installs NGINX and copies over custom templates from the `templates` folder.
 
 
 ## Vagrant Quickstart
