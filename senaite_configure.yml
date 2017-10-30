@@ -98,6 +98,136 @@ nginx_upstreams: []
 ### SENAITE NGINX ###
 
 
+### SENAITE MUNIN ###
+munin_admin_user: admin
+munin_admin_password: admin
+munin_hostname: "senaite"
+munin_dbdir: /var/lib/munin
+munin_htmldir: /var/www/html/munin
+munin_logdir: /var/log/munin
+munin_rundir: /var/run/munin
+munin_includedir: /etc/munin/conf.d
+munin_html_strategy: cron
+munin_graph_strategy: cron
+munin_cron_job: present
+munin_max_processes: 12
+munin_host: 127.0.0.1
+munin_port: 4949
+munin_allow_ipv4: "^127\\.0\\.0\\.1$"
+munin_allow_ipv6: "^::1$"
+nginx_administrative_config: /etc/nginx/sites-available/administrative.conf
+
+munin_alerts: []
+#  - {
+#    name: "JohnDoe",
+#    email: "johndoe@example.com",
+#    subject: "Munin-notification for ${var:group} :: ${var:host}",
+#    level: "warning critical"
+#   }
+
+munin_dependencies:
+  - libxml-parser-perl
+
+munin_nginx_config: |
+  # MUNIN STATIC FILES
+  location /munin/static/ {
+      alias /etc/munin/static/;
+      expires modified +1w;
+  }
+  # MUNIN INSTANCE (protected by htpasswd)
+  location /munin/ {
+      auth_basic            "SENAITE Munin";
+      auth_basic_user_file  /etc/munin/munin-htpasswd;
+      alias /var/cache/munin/www/;
+      expires modified +310s;
+  }
+  # NGINX STATUS (needed for the Munin NGINX plugin)
+  location /nginx_status {
+      stub_status on;
+      access_log off;
+      allow all;
+  }
+
+znagios_egg: '{{ plone_target_path }}/buildout-cache/eggs/Products.ZNagios-*.egg'
+
+munin_plugin_conf: |
+  [nginx_*]
+  user root
+  env.url http://127.0.0.1/nginx_status
+
+  [haproxy*]
+  user root
+  env.backend {{ haproxy_backend_id }}
+  env.frontend {{ haproxy_frontend_id }}
+  env.url http://{{ haproxy_stats_user }}:{{ haproxy_stats_pass }}@{{ haproxy_frontend_bind_address }}:{{ haproxy_frontend_port }}/haproxy-status;csv;norefresh
+
+  [varnish_*]
+  user root
+  group varnish
+  env.varnishstat varnishstat
+
+  [zope_*]
+  user root
+  {% for client in range(0, plone_client_count|int) %}
+  env.MUNIN_ZOPE_HOST_instance{{client + 1}} http://localhost:{{ plone_client_base_port | int + client }}/munin
+  {% endfor %}
+
+  [zeo_*]
+  user root
+  env.MUNIN_ZEO_HOST_ZEO1 {{ plone_zeo_ip }}
+  env.MUNIN_ZEO_PORT_ZEO1 {{ zeo_monitor_port }}
+
+munin_hosts:
+  - {
+    name: "{{ munin_hostname }}",
+    address: "127.0.0.1",
+    extra: ["use_node_name yes"]
+  }
+
+munin_plugins:
+  # NGINX PLUGINS
+  - src: /usr/share/munin/plugins/nginx_request
+    dest: /etc/munin/plugins/nginx_request
+  - src: /usr/share/munin/plugins/nginx_status
+    dest: /etc/munin/plugins/nginx_status
+  - src: /etc/munin/contrib/plugins/nginx/nginx_error
+    dest: /etc/munin/plugins/nginx_error
+  - src: /etc/munin/contrib/plugins/nginx/nginx_memory
+    dest: /etc/munin/plugins/nginx_memory
+  # HAPROXY
+  - src: /usr/share/munin/plugins/haproxy_ng
+    dest: /etc/munin/plugins/haproxy_ng
+  # VARNISH PLUGINS
+  - src: /etc/munin/contrib/plugins/varnish/varnish4_
+    dest: /etc/munin/plugins/varnish4_backend_traffic
+  - src: /etc/munin/contrib/plugins/varnish/varnish4_
+    dest: /etc/munin/plugins/varnish4_bad
+  - src: /etc/munin/contrib/plugins/varnish/varnish4_
+    dest: /etc/munin/plugins/varnish4_expunge
+  - src: /etc/munin/contrib/plugins/varnish/varnish4_
+    dest: /etc/munin/plugins/varnish4_hit_rate
+  - src: /etc/munin/contrib/plugins/varnish/varnish4_
+    dest: /etc/munin/plugins/varnish4_memory_usage
+  - src: /etc/munin/contrib/plugins/varnish/varnish4_
+    dest: /etc/munin/plugins/varnish4_objects
+  - src: /etc/munin/contrib/plugins/varnish/varnish4_
+    dest: /etc/munin/plugins/varnish4_request_rate
+  - src: /etc/munin/contrib/plugins/varnish/varnish4_
+    dest: /etc/munin/plugins/varnish4_threads
+  - src: /etc/munin/contrib/plugins/varnish/varnish4_
+    dest: /etc/munin/plugins/varnish4_transfer_rates
+  - src: /etc/munin/contrib/plugins/varnish/varnish4_
+    dest: /etc/munin/plugins/varnish4_uptime
+  # POSTFIX PLUGINS
+  - src: /usr/share/munin/plugins/postfix_mailqueue
+    dest: /etc/munin/plugins/postfix_mailqueue
+  - src: /usr/share/munin/plugins/postfix_mailstats
+    dest: /etc/munin/plugins/postfix_mailstats
+  - src: /usr/share/munin/plugins/postfix_mailvolume
+    dest: /etc/munin/plugins/postfix_mailvolume
+### SENAITE MUNIN ###
+
+
 ### SENAITE PLONE ###
 plone_version: '4.3.14'
 plone_initial_password: admin
