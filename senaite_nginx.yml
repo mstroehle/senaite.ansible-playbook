@@ -54,7 +54,7 @@
   tags:
     - senaite-nginx
 
-- name: Copy Bika HTML Files
+- name: Copy Control Panel HTML Site
   template:
     src: control_panel.html.j2
     dest: "{{ nginx_html_root }}/control_panel.html"

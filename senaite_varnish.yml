@@ -5,6 +5,7 @@
 
 - include_role:
     name: geerlingguy.varnish
+  vars:
 
 - debug:
     msg: "******************** SENAITE VARNISH PRE-TASKS [DONE] ********************"

@@ -36,7 +36,7 @@ haproxy_backend_httpchk: 'HEAD / HTTP/1.1\r\nHost:localhost'
 ### SENAITE VARNISH ###
 varnish_version: "4.0"
 varnish_use_default_vcl: true
-varnish_default_vcl_template_path: templates/default.vcl.j2
+varnish_default_vcl_template_path: "../../templates/default.vcl.j2"
 varnish_default_backend_host: "127.0.0.1"
 varnish_default_backend_port: "8080"
 varnish_listen_port: "8888"
@@ -58,10 +58,8 @@ nginx_extra_http_options: |
   proxy_read_timeout 1200s;
 
 # VHOSTS
-custom_vhosts: []
-# Example:
-#  - example.com
-#  - test.example.com
+custom_vhosts:
+  - senaite.local
 
 # SSL
 ssl_certificate: /etc/ssl/certs/ssl-cert-snakeoil.pem
@@ -115,6 +113,8 @@ plone_target_path: "/home/{{ plone_buildout_user }}"
 plone_var_path: "/home/{{ plone_buildout_user }}/data"
 plone_backup_path: no
 plone_additional_eggs: []
+plone_sources:
+  - "bika.lims = git https://github.com/senaite/senaite.lims.git"
 plone_zcml_slugs: []
 plone_additional_versions:
   - zc.buildout=
@@ -170,6 +170,7 @@ senaite_plone_config:
     plone_var_path: "{{ plone_var_path }}"
     plone_backup_path: "{{ plone_backup_path }}"
     plone_additional_eggs: "{{ plone_additional_eggs + monitoring_eggs }}"
+    plone_sources: "{{ plone_sources }}"
     plone_zcml_slugs: "{{ plone_zcml_slugs + monitoring_zcml }}"
     plone_additional_versions: "{{ plone_additional_versions + monitoring_versions }}"
     plone_client_count: "{{ plone_client_count }}"
