@@ -1,0 +1,10 @@
+---
+
+- name: restart supervisor
+  shell: "service supervisor restart"
+
+- name: reload systemd
+  command: systemctl daemon-reload
+
+- name: restart varnish
+  service: name=varnish state=restarted

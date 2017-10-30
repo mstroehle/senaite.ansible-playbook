@@ -9,5 +9,45 @@
   vars:
     plone_config: "{{ senaite_plone_config[0] }}"
 
+- name: Insert Supervisor HTTP Server Block
+  blockinfile:
+    dest: /etc/supervisor/supervisord.conf
+    block: |
+      [inet_http_server]
+      port = {{ supervisor_http_port }}
+      username = {{ supervisor_http_user }}
+      password = {{ supervisor_http_pass }}
+    state: present
+  when: supervisor_with_http
+  notify: restart supervisor
+  tags:
+    - senaite-supervisor
+
+- name: Remove Supervisor HTTP Server Block
+  blockinfile:
+    dest: /etc/supervisor/supervisord.conf
+    block: |
+      [inet_http_server]
+      port = {{ supervisor_http_port }}
+      username = {{ supervisor_http_user }}
+      password = {{ supervisor_http_pass }}
+    state: absent
+  when: not supervisor_with_http
+  notify: restart supervisor
+  tags:
+    - senaite-supervisor
+
+- name: Insert ZEO Monitoring Block
+  blockinfile:
+    dest: "{{ plone_target_path}}/{{ plone_instance_name }}/parts/zeoserver/etc/zeo.conf"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK"
+    block: |
+      monitor-address {{ plone_zeo_ip }}:{{ zeo_monitor_port }}
+    state: present
+    insertbefore: "</zeo>"
+  notify: restart supervisor
+  tags:
+    - senaite-monitoring
+
 - debug:
     msg: "******************** SENAITE PLONE [DONE] ********************"

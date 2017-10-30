@@ -127,7 +127,7 @@ plone_client_base_port: 8081
 plone_zodb_cache_size: 30000
 
 # Supervisor Daemon HTTP
-supervisor_with_http: no
+supervisor_with_http: yes
 supervisor_http_port: "127.0.0.1:9001"
 supervisor_http_user: "admin"
 supervisor_http_pass: "admin"
