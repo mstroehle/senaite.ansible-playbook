@@ -5,10 +5,17 @@
 #
 # Install via: ansible-galaxy install -r requirements.yml
 
+
+# included in senaite_plone.yml
 - src: https://github.com/plone/ansible.plone_server
   version: master
   name: plone.plone_server
 
+# included in senaite_haproxy.yml
 - name: geerlingguy.haproxy
 
+# included in senaite_varnish.yml
 - name: geerlingguy.varnish
+
+# included in senaite_nginx.yml
+- name: geerlingguy.nginx

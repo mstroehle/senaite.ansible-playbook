@@ -1,11 +1,11 @@
 ---
 
 - debug:
-    msg: "******************** SENAITE PRE-TASKS ********************"
+    msg: "******************** SENAITE PRE-TASKS [START] ********************"
 
 # REQUIRED SENAITE VARIABLES
-- name: Include SENAITE Variables `senaite.yml`
-  include_vars: senaite.yml
+- name: Include SENAITE configure variables `senaite_configure.yml`
+  include_vars: senaite_configure.yml
   tags:
     - always
 
@@ -59,3 +59,6 @@
     mode: 0644
   tags:
     - senaite-base
+
+- debug:
+    msg: "******************** SENAITE PRE-TASKS [DONE] ********************"

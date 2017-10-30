@@ -1,5 +1,13 @@
 ---
 
+# GLOBAL SENAITE CONFIGURATION
+#
+# You can overwrite each variable in your custom cofiguration file which is run
+# _after_ the `senaite_pre_tasks.yml`.
+#
+# Please see `vagrant-playbook.yml` for a running example.
+
+
 ### SENAITE BASE ###
 additional_system_packages: []
 
@@ -40,10 +48,63 @@ varnish_storage: "file,/var/lib/varnish/varnish_storage.bin,1024M"
 ###
 
 
+### SENAITE NGINX ###
+nginx_path: "/etc/nginx"
+nginx_html_root: "/usr/share/nginx/senaite"
+nginx_sites_available: "{{ nginx_path }}/sites-available"
+nginx_sites_enabled: "{{ nginx_path }}/sites-enabled"
+nginx_conf: "{{ nginx_path }}/nginx.conf"
+nginx_extra_http_options: |
+  proxy_read_timeout 1200s;
+
+# VHOSTS
+custom_vhosts: []
+# Example:
+#  - example.com
+#  - test.example.com
+
+# SSL
+ssl_certificate: /etc/ssl/certs/ssl-cert-snakeoil.pem
+ssl_certificate_key: /etc/ssl/private/ssl-cert-snakeoil.key
+
+# https://github.com/geerlingguy/ansible-role-nginx
+nginx_remove_default_vhost: true
+nginx_server_names_hash_bucket_size: "256"
+nginx_client_max_body_size: "1024m"
+nginx_gzip: "on"
+nginx_sendfile: "on"
+nginx_tcp_nopush: "on"
+nginx_tcp_nodelay: "on"
+nginx_worker_processes: "{{ ansible_processor_vcpus | default(ansible_processor_count) }}"
+nginx_worker_connections: "1024"
+nginx_multi_accept: "off"
+nginx_error_log: "/var/log/nginx/error.log warn"
+nginx_access_log: "/var/log/nginx/access.log main buffer=16k flush=2m"
+nginx_extra_conf_options: ""
+# Example extra main options, used within the main nginx's context:
+#   nginx_extra_conf_options: |
+#     env VARIABLE;
+#     include /etc/nginx/main.d/*.conf;
+nginx_keepalive_timeout: "65"
+nginx_keepalive_requests: "100"
+nginx_proxy_cache_path: ""
+nginx_upstreams: []
+# - name: myapp1
+#   strategy: "ip_hash" # "least_conn", etc.
+#   keepalive: 16 # optional
+#   servers: {
+#     "srv1.example.com",
+#     "srv2.example.com weight=3",
+#     "srv3.example.com"
+#   }
+### SENAITE NGINX ###
+
+
 ### SENAITE PLONE ###
 plone_version: '4.3.14'
 plone_initial_password: admin
 plone_instance_name: senaitelims
+plone_site_id: senaitelims
 plone_create_site: yes
 plone_extra_find_links:
 plone_buildout_cache_url: http://dist.plone.org/release/{{ plone_version }}/buildout-cache.tar.bz2

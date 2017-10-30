@@ -1,7 +1,10 @@
 ---
 
 - debug:
-    msg: "******************** SENAITE VARNISH ********************"
+    msg: "******************** SENAITE VARNISH PRE-TASKS [START] ********************"
 
 - include_role:
     name: geerlingguy.varnish
+
+- debug:
+    msg: "******************** SENAITE VARNISH PRE-TASKS [DONE] ********************"

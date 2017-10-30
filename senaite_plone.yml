@@ -1,0 +1,13 @@
+---
+
+- debug:
+    msg: "******************** SENAITE PLONE [START] ********************"
+
+- name: "Run SENAITE PLONE"
+  include_role:
+    name: plone.plone_server
+  vars:
+    plone_config: "{{ senaite_plone_config[0] }}"
+
+- debug:
+    msg: "******************** SENAITE PLONE [DONE] ********************"

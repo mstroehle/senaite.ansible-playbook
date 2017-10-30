@@ -1,7 +1,7 @@
 ---
 
 - debug:
-    msg: "******************** SENAITE HA-PROXY ********************"
+    msg: "******************** SENAITE HA-PROXY [START] ********************"
 
 - include_role:
     name: geerlingguy.haproxy
@@ -41,3 +41,6 @@
   notify: restart haproxy
   when: haproxy_version.stdout|float >= 1.6
   tags: bika-haproxy
+
+- debug:
+    msg: "******************** SENAITE HA-PROXY [DONE] ********************"

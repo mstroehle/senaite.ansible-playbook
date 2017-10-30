@@ -1,1 +1,3 @@
 ---
+
+nginx_keepalive_timeout: "300"
