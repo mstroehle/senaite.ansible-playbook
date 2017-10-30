@@ -112,11 +112,13 @@ plone_daemon_user: senaite_daemon
 plone_target_path: "/home/{{ plone_buildout_user }}"
 plone_var_path: "/home/{{ plone_buildout_user }}/data"
 plone_backup_path: no
-plone_additional_eggs: []
+plone_additional_eggs:
+  - bika.lims
 plone_sources:
-  - "bika.lims = git https://github.com/senaite/senaite.lims.git"
+  - "bika.lims = git https://github.com/senaite/bika.lims.git"
 plone_zcml_slugs: []
 plone_additional_versions:
+  - CairoSVG=1.0.20
   - zc.buildout=
   - setuptools=
 plone_client_count: 2
