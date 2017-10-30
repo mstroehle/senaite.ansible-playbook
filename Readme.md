@@ -35,6 +35,14 @@ The Playbook is splitted into different tasks which need to be run in a specific
   - Dependency Role: [geerlingguy.nginx](https://galaxy.ansible.com/geerlingguy/nginx)
   - Installs NGINX and copies over custom templates from the `templates` folder.
 
+- `senaite_munin`
+  - Dependency Role: [geerlingguy.munin](https://galaxy.ansible.com/geerlingguy/munin)
+  - Installs MUNIN and copies over custom templates from the `templates` folder.
+
+- `senaite_postfix`
+  - Dependency Role: [tersmitten.postfix](https://galaxy.ansible.com/tersmitten/postfix)
+  - Installs Postfix and copies over custom templates from the `templates` folder.
+
 
 ## Vagrant Quickstart
 

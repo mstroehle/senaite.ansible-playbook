@@ -19,3 +19,9 @@
 
 # included in senaite_nginx.yml
 - name: geerlingguy.nginx
+
+# included in senaite_munin.yml
+- src: geerlingguy.munin
+
+# included in senaite_postfix.yml
+- src: tersmitten.postfix
