@@ -20,6 +20,7 @@
     - include: senaite_varnish.yml
     - include: senaite_nginx.yml
     - include: senaite_munin.yml
+    - include: senaite_postfix.yml
 
   handlers:
     - include: senaite_handlers.yml

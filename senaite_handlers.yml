@@ -11,3 +11,6 @@
 
 - name: restart munin-node
   service: name=munin-node state=restarted
+
+- name: postmap generic_maps
+  command: postmap hash:/etc/postfix/generic
