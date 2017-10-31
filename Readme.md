@@ -72,6 +72,9 @@ This will run the Playbook `vagrant_playbook.yml` on the hosts defined in
 
 Open a browser and go to `https://192.168.33.10` to access your SENAITE site.
 
+There is a control panel website at https://192.168.33.10/control_panel
+installed, which contains static links to the other installed services.
+
 
 [1]: https://github.com/senaite/bika.lims "SENAITE"
 [2]: https://plone.org "Plone"
