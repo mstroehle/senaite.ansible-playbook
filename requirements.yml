@@ -25,3 +25,6 @@
 
 # included in senaite_postfix.yml
 - src: tersmitten.postfix
+
+# included in senaite_security.yml
+- src: HanXHX.firewall

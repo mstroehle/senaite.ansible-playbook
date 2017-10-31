@@ -245,6 +245,12 @@ postfix_smtp_generic_maps: []
 ### SENAITE POSTFIX ###
 
 
+### SENAITE SECURITY ###
+firewall_open_tcp_ports: [25, 80, 443]
+firewall_use_fail2ban: no
+### SENAITE SECURITY ###
+
+
 ### SENAITE PLONE ###
 plone_version: '4.3.14'
 plone_initial_password: admin

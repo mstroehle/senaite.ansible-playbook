@@ -21,6 +21,7 @@
     - include: senaite_nginx.yml
     - include: senaite_munin.yml
     - include: senaite_postfix.yml
+    - include: senaite_security.yml
 
   handlers:
     - include: senaite_handlers.yml
