@@ -136,7 +136,6 @@ Finally the `playbook.yml` puts all the pieces togehter:
 
     ---
 
-    # Run with ansible-playbook -i vagrant_hosts.cfg vagrant_playbook.yml
     - hosts: vm
       become: yes
       become_method: sudo
@@ -161,6 +160,10 @@ Finally the `playbook.yml` puts all the pieces togehter:
 
       handlers:
         - include: senaite.ansible-playbook/senaite_handlers.yml
+
+Now you can run your playbook with this command:
+
+    ansible-playbook -i hosts.cfg playbook.yml
 
 
 [1]: https://github.com/senaite/bika.lims "SENAITE"
