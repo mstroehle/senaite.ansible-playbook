@@ -86,6 +86,9 @@ Create a folder, e.g. `my.senaite.playbook` and clone the
     git clone git@github.com:senaite/senaite.ansible-playbook.git
     touch ansible.cfg configure.yml hosts.cfg playbook.yml
 
+
+The final file structure should look like this:
+
     my.senaite.playbook
     ├── ansible.cfg
     ├── configure.yml
