@@ -79,31 +79,30 @@ installed, which contains static links to the other installed services.
 
 This section provides answers and solutions to some common answsers and pitfalls.
 
-<dl>
-  <dt>
-    I see only a plain Plone website installed.
-  </dt>
-  <dd>
-    You need to go to the add-ons control panel and install SENAITE Core/LIMS, e.g.
-    https://192.168.33.10/prefs_install_products_form
-  </dd>
+### I see only a plain Plone website installed
 
-  <dt>
-    I get this Error running buildout:
+You need to go to the add-ons control panel and install SENAITE Core/LIMS, e.g.
+https://192.168.33.10/prefs_install_products_form
 
-    handler in zc.buildout.easy_install.UNPACKERS
-    While:
-      Installing.
-      Loading extensions.
-      Getting distribution for 'mr.developer==1.37'.
-    Error: Wheels are not supported
+### Errors occur during buildout
 
-  </dt>
-  <dd>
-    Setuptools `38.2.0` started supporting wheels which fails in `zc.buildout < 2.10.0`.
-    Please pin `zc.buildout` to version `2.10.0` in your buildout.cfg
-  </dd>
-</dl>
+
+#### Error: Wheels are not supported
+
+Traceback:
+
+```
+handler in zc.buildout.easy_install.UNPACKERS
+While:
+  Installing.
+  Loading extensions.
+  Getting distribution for 'mr.developer==1.37'.
+Error: Wheels are not supported
+```
+
+Setuptools `38.2.0` started supporting wheels which fails in `zc.buildout < 2.10.0`.
+Please pin `zc.buildout` to version `2.10.0` in your buildout.cfg
+
 
 ## Customizing
 
