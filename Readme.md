@@ -90,14 +90,14 @@ This section provides answers and solutions to some common answsers and pitfalls
 
   <dt>
     I get this Error running buildout:
-    <pre>
+
     handler in zc.buildout.easy_install.UNPACKERS
     While:
       Installing.
       Loading extensions.
       Getting distribution for 'mr.developer==1.37'.
     Error: Wheels are not supported
-    </pre>
+
   </dt>
   <dd>
     Setuptools 38.2.0 started supporting wheels which fails in zc.buildout < 2.10.0.
