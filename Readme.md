@@ -76,6 +76,39 @@ There is a control panel website at https://192.168.33.10/control_panel
 installed, which contains static links to the other installed services.
 
 
+## Troubleshooting
+
+This section provides answers and solutions to some common answsers and pitfalls.
+
+<dl>
+  <dt>
+    I see only a plain Plone website installed.
+  </dt>
+  <dd>
+    You need to go to the add-ons control panel and install SENAITE Core/LIMS, e.g.
+    https://192.168.33.10/prefs_install_products_form
+  </dd>
+
+  <dt>
+    I get this Error running buildout:
+    <pre>
+    handler in zc.buildout.easy_install.UNPACKERS
+    While:
+      Installing.
+      Loading extensions.
+      Getting distribution for 'mr.developer==1.37'.
+    Error: Wheels are not supported
+    </pre>
+  </dt>
+  <dd>
+    Setuptools 38.2.0 started supporting wheels which fails in zc.buildout < 2.10.0.
+    Please pin zc.buildout to version 2.10.0 in your buildout.cfg
+  </dd>
+</dl>
+
+
+
+
 [1]: https://github.com/senaite/bika.lims "SENAITE"
 [2]: https://plone.org "Plone"
 [3]: https://galaxy.ansible.com "Ansible Galaxy"
