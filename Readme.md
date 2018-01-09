@@ -104,6 +104,18 @@ Setuptools `38.2.0` started supporting wheels which fails in `zc.buildout < 2.10
 Please pin `zc.buildout` to version `2.10.0` in your buildout.cfg
 
 
+#### Error: Couldn't find a distribution for 'plone.api'
+
+Please add this index section to your `buildout.cfg`:
+
+```
+[buildout]
+...
+index = https://pypi.python.org/simple/
+...
+```
+
+
 ## Customizing
 
 Create a folder, e.g. `my.senaite.playbook` and clone the
