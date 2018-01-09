@@ -100,8 +100,8 @@ This section provides answers and solutions to some common answsers and pitfalls
 
   </dt>
   <dd>
-    Setuptools 38.2.0 started supporting wheels which fails in zc.buildout < 2.10.0.
-    Please pin zc.buildout to version 2.10.0 in your buildout.cfg
+    Setuptools `38.2.0` started supporting wheels which fails in `zc.buildout < 2.10.0`.
+    Please pin `zc.buildout` to version `2.10.0` in your buildout.cfg
   </dd>
 </dl>
 
