@@ -50,6 +50,9 @@ Start the Vagrant box:
 
     vagrant up
 
+
+<img src="static/vagrant-up.svg" alt="Terminal output when running vagrant-up" />
+
 This starts up a local Vagrant box listening on `192.168.33.10`.
 Please see `Vagrantfile` for more details.
 
@@ -58,6 +61,8 @@ Install the Ansible requirements:
 
     ansible-galaxy install -f -r requirements.yml
 
+<img src="static/ansible-galaxy.svg" alt="Terminal output when running ansible-galaxy" />
+
 This will download all the required roles for this Playbook into the `roles`
 directory.
 
@@ -65,6 +70,8 @@ directory.
 Run the Vagrant playbook:
 
     ansible-playbook -i vagrant_hosts.cfg vagrant_playbook.yml
+
+<img src="static/ansible-playbook.svg" alt="Terminal output when running ansible-playbook" />
 
 This will run the Playbook `vagrant_playbook.yml` on the hosts defined in
 `vagrant_hosts.cfg`.
