@@ -273,9 +273,7 @@ plone_sources:
   - "senaite.lims = git https://github.com/senaite/senaite.lims.git"
 plone_zcml_slugs: []
 plone_additional_versions:
-  - CairoSVG=1.0.20
-  - five.pt=2.2.4
-  - zc.buildout=2.10.0
+  - zc.buildout=
   - setuptools=
 plone_client_count: 2
 plone_zserver_threads: 2
