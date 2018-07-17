@@ -164,6 +164,25 @@ See this link for a solution:
 https://askubuntu.com/questions/162391/how-do-i-fix-my-locale-issue
 
 
+### Permission denied
+
+Traceback:
+
+```
+zope.configuration.xmlconfig.ZopeXMLConfigurationError: File "/home/senaite/senaitelims/parts/client1/etc/site.zcml", line 16.2-16.23
+    ZopeXMLConfigurationError: File "/home/senaite/buildout-cache/eggs/Products.CMFPlone-4.3.17-py2.7.egg/Products/CMFPlone/configure.zcml", line 98.4-102.10
+    ZopeXMLConfigurationError: File "/home/senaite/senaitelims/src/senaite.core/bika/lims/configure.zcml", line 15.0-15.35
+    ZopeXMLConfigurationError: File "/home/senaite/buildout-cache/eggs/Products.TextIndexNG3-3.4.14-py2.7.egg/Products/TextIndexNG3/configure.zcml", line 8.2-8.61
+    IOError: [Errno 13] Permission denied: '/home/senaite/buildout-cache/eggs/zopyx.txng3.core-3.6.2-py2.7.egg/zopyx/txng3/core/configure.zcml'
+```
+
+Also see this issue: https://github.com/senaite/senaite.core/issues/861
+
+Change the permissions on the `eggs` directory:
+
+    chmod -R ug+rwX,o-rwx /home/senaite/buildout-cache/eggs
+
+
 ### Global Python interpreter is used
 
 Add this to the end of `/home/senaite/.profile` to use the local python interpreter from the buildout.
