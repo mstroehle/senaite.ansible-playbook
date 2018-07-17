@@ -88,16 +88,96 @@ Open a browser and go to `https://192.168.33.10` to access your SENAITE site.
 There is a control panel website at https://192.168.33.10/control_panel
 installed, which contains static links to the other installed services.
 
+
+## Build a custom VM
+
+Currently this playbook is tested with the following distributions:
+
+- Ubuntu Server 16.04 LTS
+- Ubuntu Server 14.04 LTS
+
+You can download the ISO from here:
+
+https://www.ubuntu.com/download/alternative-downloads
+
+After the base system installation, the VM has to be prepared to be managed by
+this playbook.
+
+The following steps will assume that the main user of the system is called `senaite`.
+
+
+### Add the user to the sudoers
+
+This allows the user to become `root` without being asked for the password:
+
+    sudo cat <<- EOF >/etc/sudoers.d/senaite 
+    # User rules for SENAITE
+    senaite ALL=(ALL) NOPASSWD:ALL
+    EOF
+
+
+### Create a SSH Key
+
+Create a RSA SSH key to log in with public key authentication:
+
+    ssh-keygen -t rsa -b 4096
+
+You can keep the standard settings being asked for.
+
+
+### Add your public key to the authorized_keys
+
+Add your public key from your local computer to the VM:
+
+    cat <<EOF >/home/senaite/.ssh/authorized_keys
+    YOUR-PUBLIC-RSA-KEY
+    EOF
+
+    chmod 600 /home/senaite/.ssh/authorized_keys
+    
+    
+### Install Python
+
+This is required by Ansible:
+
+    sudo apt install python
+
+
 ## Troubleshooting
 
 This section provides answers and solutions to some common answsers and pitfalls.
+
+
+### Error setting locale
+
+I get this message in the terminal:
+
+    perl: warning: Setting locale failed.
+    perl: warning: Please check that your locale settings:
+            LANGUAGE = "en_US:en",
+            LC_ALL = (unset),
+            LC_MESSAGES = "en_US.UTF-8",
+            LANG = "en_US.UTF-8"
+        are supported and installed on your system.
+
+See this link for a solution:
+https://askubuntu.com/questions/162391/how-do-i-fix-my-locale-issue
+
+
+### Global Python interpreter is used
+
+Add this to the end of `/home/senaite/.profile` to use the local python interpreter from the buildout.
+
+    if [ -d "$HOME/python2.7" ] ; then
+        echo "Using local Python installation"
+        PATH="$HOME/python2.7/bin:$PATH"
+    fi
+
 
 ### I see only a plain Plone website installed
 
 You need to go to the add-ons control panel and install SENAITE Core/LIMS, e.g.
 https://192.168.33.10/prefs_install_products_form
-
-### Errors occur during buildout
 
 
 #### Error: Wheels are not supported
