@@ -5,7 +5,7 @@
 
 - name: "Run POSTFIX Role"
   include_role:
-    name: tersmitten.postfix
+    name: oefenweb.postfix
 
 - name: update configuration file
   template:

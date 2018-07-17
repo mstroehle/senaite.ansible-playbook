@@ -40,7 +40,7 @@ The Playbook is splitted into different tasks which need to be run in a specific
   - Installs MUNIN and copies over custom templates from the `templates` folder.
 
 - `senaite_postfix`
-  - Dependency Role: [tersmitten.postfix](https://galaxy.ansible.com/tersmitten/postfix)
+  - Dependency Role: [tersmitten.postfix](https://galaxy.ansible.com/oefenweb/postfix)
   - Installs Postfix and copies over custom templates from the `templates` folder.
 
 
