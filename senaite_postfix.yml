@@ -21,6 +21,7 @@
 - name: "Configure Postfix `smtp_generic_maps` in /etc/postfix/generic"
   lineinfile:
     dest: /etc/postfix/generic
+    create: yes
     regexp: '^{{ item.user }}.*'
     line: '{{ item.user }} {{ item.alias }}'
     owner: root
