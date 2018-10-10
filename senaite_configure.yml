@@ -268,9 +268,11 @@ plone_backup_path: no
 plone_additional_eggs:
   - senaite.core
   - senaite.lims
+  - senaite.impress
 plone_sources:
   - "senaite.core = git https://github.com/senaite/senaite.core.git"
   - "senaite.lims = git https://github.com/senaite/senaite.lims.git"
+  - "senaite.impress = git https://github.com/senaite/senaite.impress.git"
 plone_zcml_slugs: []
 plone_additional_versions:
   - zc.buildout=
