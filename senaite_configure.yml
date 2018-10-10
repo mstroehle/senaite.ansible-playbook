@@ -252,7 +252,7 @@ firewall_use_fail2ban: no
 
 
 ### SENAITE PLONE ###
-plone_version: '4.3.17'
+plone_version: '4.3.18'
 plone_initial_password: admin
 plone_instance_name: senaitelims
 plone_site_id: senaitelims
