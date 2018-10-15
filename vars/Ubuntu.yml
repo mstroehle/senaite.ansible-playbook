@@ -17,3 +17,4 @@ apt_packages:
     - libgdk-pixbuf2.0-0
     - ssl-cert
     - acl
+    - libfreetype6-dev
