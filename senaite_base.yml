@@ -2,3 +2,11 @@
 
 - debug:
     msg: "******************** SENAITE BASE ********************"
+
+- name: Install additional system packages
+  apt:
+    pkg: "{{ item }}"
+    state: present
+  with_items: "{{ additional_system_packages }}"
+  tags:
+    - bika-base
