@@ -27,10 +27,6 @@ The Playbook is splitted into different tasks which need to be run in a specific
   - Dependency Role: [geerlingguy.haproxy](https://galaxy.ansible.com/geerlingguy/haproxy)
   - Installs HAProxy and copies over custom templates from the `templates` folder.
 
-- `senaite_varnish`
-  - Dependency Role: [geerlingguy.varnish](https://galaxy.ansible.com/geerlingguy/varnish)
-  - Installs Varnish and copies over custom templates from the `templates` folder.
-
 - `senaite_nginx`
   - Dependency Role: [geerlingguy.nginx](https://galaxy.ansible.com/geerlingguy/nginx)
   - Installs NGINX and copies over custom templates from the `templates` folder.
@@ -304,7 +300,6 @@ Finally the `playbook.yml` puts all the pieces togehter:
         - include: senaite.ansible-playbook/senaite_base.yml
         - include: senaite.ansible-playbook/senaite_plone.yml
         - include: senaite.ansible-playbook/senaite_haproxy.yml
-        - include: senaite.ansible-playbook/senaite_varnish.yml
         - include: senaite.ansible-playbook/senaite_nginx.yml
         - include: senaite.ansible-playbook/senaite_munin.yml
         - include: senaite.ansible-playbook/senaite_postfix.yml

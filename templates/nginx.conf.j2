@@ -47,10 +47,6 @@ http {
         server 127.0.0.1:{{ haproxy_frontend_port }};
     }
 
-    upstream varnish {
-        server 127.0.0.1:{{ varnish_listen_port }};
-    }
-
     upstream plone {
         ip_hash;
 {% for client in range(0, plone_client_count|int ) %}

@@ -17,7 +17,6 @@
     - include: senaite_base.yml
     - include: senaite_plone.yml
     - include: senaite_haproxy.yml
-    - include: senaite_varnish.yml
     - include: senaite_nginx.yml
     - include: senaite_munin.yml
     - include: senaite_postfix.yml

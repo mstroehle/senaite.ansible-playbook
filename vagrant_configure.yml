@@ -12,6 +12,5 @@ nginx_keepalive_timeout: "300"
 plone_zodb_cache_size: 50000
 plone_additional_versions:
   - CairoSVG=1.0.20
-  - five.pt=2.2.4
-  - zc.buildout=2.10.0
+  - zc.buildout=
   - setuptools=

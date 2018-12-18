@@ -14,9 +14,6 @@
 # included in senaite_haproxy.yml
 - name: geerlingguy.haproxy
 
-# included in senaite_varnish.yml
-- name: geerlingguy.varnish
-
 # included in senaite_nginx.yml
 - name: geerlingguy.nginx
 
