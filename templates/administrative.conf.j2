@@ -34,7 +34,7 @@ server {
     root {{ nginx_html_root }};
 
     location / {
-        set $backend http://varnish;
+        set $backend http://haproxy;
         if ($uri ~* "@@API") {
             set $backend http://api;
         }
