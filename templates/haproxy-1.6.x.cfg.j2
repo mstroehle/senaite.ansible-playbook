@@ -103,5 +103,5 @@ backend {{ haproxy_backend_id }}
 {% endif %}
 
 {% for client in range(0, plone_client_count|int ) %}
-    server {{ plone_instance_name }}_{{ client + 1 }} localhost:{{ plone_client_base_port | int + client }} cookie {{ plone_instance_name }}_{{ client + 1 }} check
+    server {{ plone_instance_name }}_{{ client + 1 }} 127.0.0.1:{{ plone_client_base_port | int + client }} cookie {{ plone_instance_name }}_{{ client + 1 }} check
 {% endfor %}
