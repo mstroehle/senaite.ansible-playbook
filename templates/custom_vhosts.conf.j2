@@ -10,7 +10,7 @@ server {
     }
 
     location / {
-        set $backend http://varnish;
+        set $backend http://haproxy;
         if ($uri ~* "@@API") {
             set $backend http://api;
         }
@@ -47,7 +47,7 @@ server {
     rewrite ^(.*)(/logged_out)(.*) http://$server_name$1$2$3 redirect;
 
     location / {
-        set $backend http://varnish;
+        set $backend http://haproxy;
         # API calls take a different backend w/o caching
         if ($uri ~* "@@API") {
             set $backend http://api;
