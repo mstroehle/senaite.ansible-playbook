@@ -11,6 +11,8 @@ firewall_open_tcp_ports: [22, 25, 80, 443]
 nginx_keepalive_timeout: "300"
 plone_zodb_cache_size: 50000
 plone_additional_versions:
-  - CairoSVG=1.0.20
-  - zc.buildout=
+  - zc.buildout=2.12.2
   - setuptools=
+plone_client_count: 2
+plone_client_extras: |
+  python-check-interval = 2000
