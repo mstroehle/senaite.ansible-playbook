@@ -7,7 +7,7 @@
     name: geerlingguy.haproxy
 
 - name: SHELL | Get HAPROXY Version
-  shell: haproxy -v | grep -o "[0-9]\.[0-9]"
+  shell: haproxy -v | grep -o "[0-9]\.[0-9]" | head -1
   register: haproxy_version
   tags:
     - senaite-haproxy-version
